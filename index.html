@@ -8,18 +8,20 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: linear-gradient(180deg, #1a4d32 0%, #0d2b1c 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: white;
         }
 
         .container {
-            background-color: rgba(255, 255, 255, 0.08);
+            background-color: rgba(255, 255, 255, 0.07);
             backdrop-filter: blur(15px);
-            padding: 35px 25px;
+            -webkit-backdrop-filter: blur(15px);
+            padding: 30px 20px;
             border-radius: 40px;
             width: 90%;
             max-width: 400px;
@@ -30,57 +32,64 @@
 
         .header-image {
             width: 100%;
-            border-radius: 20px;
-            margin-bottom: 15px;
+            border-radius: 25px;
+            margin-bottom: 10px;
+            display: block;
         }
 
         h1 {
-            color: white;
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin: 10px 0;
+            font-weight: 700;
         }
 
         p {
-            color: #ccc;
+            color: #d0d0d0;
             font-size: 1rem;
             margin-bottom: 25px;
+            line-height: 1.4;
         }
 
         input {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             border-radius: 15px;
             border: none;
             background-color: #f0f4f8;
             box-sizing: border-box;
             font-size: 1rem;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             outline: none;
+            color: #333;
         }
 
         .btn {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             border-radius: 15px;
             border: none;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             cursor: pointer;
-            margin-bottom: 12px;
-            transition: all 0.2s ease;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            display: block;
+            text-decoration: none;
         }
 
         .btn:active {
-            transform: scale(0.98);
+            transform: scale(0.97);
         }
 
+        /* Botón Principal - Verde Neón */
         .btn-primary {
-            background-color: #00e676;
+            background-color: #00ff85;
             color: #0d2b1c;
         }
 
+        /* Botones Secundarios - Degradado Turquesa */
         .btn-secondary {
-            background: linear-gradient(90deg, #148e81, #1fbba6);
+            background: linear-gradient(90deg, #187a71, #25a093);
             color: white;
         }
 
@@ -94,16 +103,23 @@
 <body>
 
 <div class="container">
-    <img src="camion.jpg" alt="Servicio de Entrega" class="header-image">
+    <img src="https://photos.app.goo.gl/SNbNe1a927AW7EvS9" alt="Servicio de Entrega" class="header-image">
 
     <h1>Consultar guía</h1>
     <p>Consulta el estado de tu envío con depósito asegurado</p>
 
-    <input type="text" id="numGuia" placeholder="Ingresa número de guía">
-    <input type="text" id="numDoc" placeholder="Ingresa número de documento">
+    <div class="input-group">
+        <input type="text" id="numGuia" placeholder="Ingresa número de guía">
+        <input type="text" id="numDoc" placeholder="Ingresa número de documento">
+    </div>
 
-    <button class="btn btn-primary" onclick="validarYEnviar()">Consultar Guía</button>
+    <button class="btn btn-primary" onclick="validarGuia()">Consultar Guía</button>
+    
     <button class="btn btn-secondary" onclick="irAWhatsApp()">Chat Bot Documento</button>
+    
+    <a href="https://www.facebook.com/profile.php?id=61582129914980&mibextid=rS40aB7S9Ucbxw6v" target="_blank" class="btn btn-secondary">
+        Conoce más sobre nosotros
+    </a>
 
     <div class="footer-text">
         Servicio exclusivo depósito asegurado
@@ -111,24 +127,27 @@
 </div>
 
 <script>
-    function validarYEnviar() {
-        const guiaIngresada = document.getElementById('numGuia').value.trim();
-        const codigoCorrecto = "0750925931";
-        const telefonoWA = "573026219839"; // Formato internacional para Colombia
+    function validarGuia() {
+        const guiaInput = document.getElementById('numGuia').value.trim();
+        const docInput = document.getElementById('numDoc').value.trim();
+        
+        // El número de guía que solicitaste validar
+        const codigoValido = "0750925931";
+        const telefonoWhatsApp = "573026219839";
 
-        if (guiaIngresada === codigoCorrecto) {
-            // Si el código es correcto, redirige al WhatsApp con un mensaje predefinido
-            const mensaje = encodeURIComponent("Hola, mi número de guía es " + codigoCorrecto + ". Deseo consultar mi envío.");
-            window.location.href = "https://wa.me/" + telefonoWA + "?text=" + mensaje;
-        } else if (guiaIngresada === "") {
-            alert("Por favor, ingresa el número de guía.");
+        if (guiaInput === codigoValido) {
+            // Si el código es correcto, abre WhatsApp
+            const mensaje = encodeURIComponent("Hola, mi número de guía es " + codigoValido + ". Deseo consultar mi envío.");
+            window.location.href = "https://wa.me/" + telefonoWhatsApp + "?text=" + mensaje;
+        } else if (guiaInput === "" || docInput === "") {
+            alert("Por favor, ingresa el número de guía y documento.");
         } else {
             alert("Número de guía no reconocido. Por favor, verifica el código.");
         }
     }
 
     function irAWhatsApp() {
-        // El botón secundario también dirige al mismo WhatsApp de soporte
+        // Redirección directa para soporte
         window.location.href = "https://wa.me/573026219839";
     }
 </script>
