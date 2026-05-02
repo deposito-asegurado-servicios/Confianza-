@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta tu Guía - Depósito Asegurado</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle, #0a3d2c 0%, #052419 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        .header-graphic {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .truck-icon {
+            font-size: 80px;
+            color: #4cd964;
+        }
+
+        .location-pin {
+            position: absolute;
+            top: -20px;
+            right: 40px;
+            font-size: 30px;
+            color: #4cd964;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            opacity: 0.8;
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #225c49;
+            border-radius: 30px;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: white;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #4cd964;
+            box-shadow: 0 0 15px rgba(76, 217, 100, 0.4);
+            outline: none;
+        }
+
+        button.main-button {
+            background-color: #4cd964;
+            color: #052419;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        button.main-button:hover {
+            background-color: #3cb353;
+        }
+
+        button.main-button:active {
+            transform: scale(0.98);
+        }
+
+        .footer {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .footer-dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+        }
+
+        .footer-dot.active {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-graphic">
+            <div class="location-pin">&#128205;</div>
+            <div class="truck-icon">&#128666;</div>
+        </div>
+
+        <h1>Consultar guía</h1>
+        <p>Consulta el estado de tu envío con depósito asegurado</p>
+
+        <div class="input-group">
+            <input type="text" placeholder="Ingresa tu número de guía">
+        </div>
+
+        <button class="main-button">Conoce más</button>
+
+        <div class="footer">
+            <div class="footer-dot"></div>
+            <div class="footer-dot active"></div>
+            <div class="footer-dot"></div>
+        </div>
+    </div>
+</body>
+</html>
